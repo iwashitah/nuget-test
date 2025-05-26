@@ -36,7 +36,7 @@ jobs:
       - uses: jfrog/frogbot@v2
         env:
           JFROG_CLI_LOG_LEVEL: DEBUG
-          JF_URL: ${{ vars.JF_URL }}
+          JF_URL: ${{ secrets.JF_URL }}
           JF_GIT_BASE_BRANCH: ${{ matrix.branch }}
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
