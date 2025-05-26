@@ -1,4 +1,4 @@
-name: "Frogbot Security Scan x"
+name: "Frogbot Security Scan"
 
 on:
   pull_request_target:
@@ -41,6 +41,7 @@ jobs:
           JF_URL: ${{ vars.JF_URL }}
           JF_GIT_BASE_BRANCH: ${{ matrix.branch }}
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ls -al /usr/bin
         with:
           oidc-provider-name: github-artifactory
           oidc-audience: jfrog-github
