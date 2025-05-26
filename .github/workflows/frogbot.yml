@@ -29,6 +29,9 @@ jobs:
       
       - name: List nuget-test Directory Contents
         run: ls -al /usr/bin
+
+      - name: Check OS
+        run: cat /etc/os-release
         
       - uses: jfrog/frogbot@v2
         env:
@@ -38,6 +41,6 @@ jobs:
           JF_URL: ${{ vars.JF_URL }}
           JF_GIT_BASE_BRANCH: ${{ matrix.branch }}
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          oidc-provider-name: github-artifactory
-#          oidc-audience: jfrog-github
+        with:
+          oidc-provider-name: github-artifactory
+          oidc-audience: jfrog-github
