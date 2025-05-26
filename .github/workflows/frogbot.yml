@@ -1,0 +1,44 @@
+name: "Frogbot Security Scan"
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]  # Triggers scan-pr flow for every opened/updated pull request
+  push:
+    branches: 
+      - master  # Updated branch to master
+
+permissions:
+  pull-requests: write
+  contents: write
+  security-events: write
+  actions: read
+  packages: write
+  # [Mandatory If using OIDC authentication protocol instead of JF_ACCESS_TOKEN]
+  id-token: write 
+
+jobs:
+  frogbot-scan:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        # The repository scanning will be triggered periodically on the following branch.
+        branch: ["main"]  # Updated branch to master
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      
+      - name: List nuget-test Directory Contents
+        run: ls -la 
+        
+      - uses: jfrog/frogbot@v2
+        env:
+          JFROG_CLI_LOG_LEVEL: DEBUG
+          JF_URL: ${{ vars.JF_URL }}
+          JF_GIT_BASE_BRANCH: ${{ matrix.branch }}
+          JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          oidc-provider-name: github-artifactory
+          oidc-audience: jfrog-github
