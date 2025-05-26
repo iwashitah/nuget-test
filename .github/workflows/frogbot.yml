@@ -3,9 +3,6 @@ name: "Frogbot Security Scan"
 on:
   pull_request_target:
     types: [opened, synchronize]  # Triggers scan-pr flow for every opened/updated pull request
-  push:
-    branches: 
-      - master  # Updated branch to master
 
 permissions:
   pull-requests: write
