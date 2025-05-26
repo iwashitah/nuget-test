@@ -26,12 +26,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
-      - name: List nuget-test Directory Contents 1
-        run: ls -al /usr/bin
-
-      - name: Check OS 1
-        run: cat /etc/os-release
-        
       - uses: jfrog/frogbot@v2
         env:
           JFROG_CLI_LOG_LEVEL: DEBUG
@@ -44,8 +38,8 @@ jobs:
           oidc-provider-name: github-artifactory
           oidc-audience: jfrog-github
 
-      - name: List nuget-test Directory Contents 2
+      - name: List nuget-test Directory Contents
         run: ls -al /usr/bin
 
-      - name: Check OS 2
+      - name: Check OS
         run: cat /etc/os-release
