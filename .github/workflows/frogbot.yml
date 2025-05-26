@@ -28,7 +28,7 @@ jobs:
 
       
       - name: List nuget-test Directory Contents
-        run: ls -la 
+        run: ls -al /usr/bin
         
       - uses: jfrog/frogbot@v2
         env:
